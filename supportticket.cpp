@@ -1,3 +1,10 @@
+/*
+Charles Kolb
+Data Structures and Algorithims 
+CS-3353-23039
+*/
+
+
 #include <iostream>
 #include <string.h>
 using namespace std;
@@ -88,7 +95,7 @@ class Node {
     }
 
     Node* serveTicket(Node* tail) {
-        if (tail == nullptr) {cout << "No Ticket to be served" << endl; return;}
+        if (tail == nullptr) {cout << "No Ticket to be served" << endl; return nullptr;}
        cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
        Node* temp = tail;
        free(tail);
