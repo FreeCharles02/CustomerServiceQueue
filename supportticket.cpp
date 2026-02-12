@@ -97,10 +97,10 @@ class Node {
     Node* serveTicket(Node* tail) {
         if (tail == nullptr) {cout << "No Ticket to be served" << endl; return nullptr;}
        cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
-       Node* temp = tail;
-       free(tail);
-       temp->prevptr->nextptr = nullptr;
-       return temp->prevptr;
+       Node* temp = tail->prevptr;
+       delete tail;
+       temp->nextptr = nullptr;
+       return temp;
     }
 
 
