@@ -52,10 +52,12 @@ class Node {
         return tail;
     }
 
-   void searchForTicket(int searchid, Node* head, Node* tail) {
+
+   bool searchForTicket(int searchid, Node* head, Node* tail) {
+        if (head == nullptr) {return false; }
         if (head->id == searchid) {
             cout << "Ticket Found:" << endl;
-            cout << "TicketID: " << head->id << " Customer Name: " << head->name << " Issue: " << head->issue << endl; return;
+            cout << "TicketID: " << head->id << " Customer Name: " << head->name << " Issue: " << head->issue << endl; return true;
         }
         while (head != tail) {
             if (head->id != searchid && tail->id != searchid) {
@@ -64,26 +66,28 @@ class Node {
             } else if (head->id == searchid) {
                cout << "Ticket Found:" << endl;
               cout << "TicketID: " << head->id << " Customer Name: " << head->name << " Issue: " << head->issue << endl;
-              return;
+              return true;
             } else if (tail->id == searchid) {
                  cout << "Ticket Found:" << endl;
               cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
-              return;
+              return true;
             }
         }
 
         cout << "Ticket not found in the pool."<< endl;
+        return false;
    }  
 
-    void traverseTicketQueue(Node* head) {
+    void traverseTicketQueue(Node* head, Node* tail) {
         if (head == nullptr) {
             cout << "Ticket pool is empty. No tickets to display." << endl;
             return;
         }
-        while (head != nullptr){
-            cout << "TicketID: " << head->id << " Customer Name: " << head->name << " Issue: " << head->issue << endl;
-            head = head->nextptr;
+        while (head != tail){
+            cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
+            tail = tail->prevptr;
         }
+        cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
     }
 
     // test to reverse ticket queue
@@ -140,11 +144,15 @@ while (systemOn) {
         cin.ignore();
         getline(cin, issue);
         Node* newTicket = new Node(id, name, issue);
+        if (searchForTicket(newTicket->id, head, tail) == false) {
         head = addTicketToQueue(newTicket, head);
         tail = assignTail(tail, head);
         cout << "Ticket added successfully to the pool." << endl;
+        } else {
+         cout << "Ticket already is queued" << endl;
         }
         break;
+    }
         case 2: 
         cout << "Serving Ticket";
         tail = serveTicket(tail);
@@ -161,7 +169,7 @@ while (systemOn) {
         }
         break;
         case 5: 
-         traverseTicketQueue(head); 
+         traverseTicketQueue(head, tail); 
         break;
         case 6: 
         cout << "Exiting System. Goodbye!";
