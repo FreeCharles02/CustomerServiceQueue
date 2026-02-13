@@ -69,7 +69,8 @@ class Node {
               return true;
             } else if (tail->id == searchid) {
                  cout << "Ticket Found:" << endl;
-              cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
+
+                 cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
               return true;
             }
         }
@@ -83,11 +84,12 @@ class Node {
             cout << "Ticket pool is empty. No tickets to display." << endl;
             return;
         }
-        while (head != tail){
+        cout << "All Pending Tickets in Queue: " << endl;
+        while (tail != nullptr){
             cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
             tail = tail->prevptr;
         }
-        cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
+       
     }
 
     // test to reverse ticket queue
