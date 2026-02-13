@@ -84,7 +84,7 @@ class Node {
             cout << "Ticket pool is empty. No tickets to display." << endl;
             return;
         }
-        cout << "All Pending Tickets in Queue: " << endl;
+        cout << "All Pending Tickets in Pool: " << endl;
         while (tail != nullptr){
             cout << "TicketID: " << tail->id << " Customer Name: " << tail->name << " Issue: " << tail->issue << endl;
             tail = tail->prevptr;
